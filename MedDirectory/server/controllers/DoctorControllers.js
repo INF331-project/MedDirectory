@@ -50,7 +50,7 @@ const doctorLogin = async (req, res, next) => {
 const getAllDoctors = async (req, res, next) => {
     try {
         const doctors = await Doctors.find().select([
-            "name", "specialization", "experience", "avatarImage",
+            "name", "specialization", "experience", "avatarImage", "email",
         ]);
         return res.status(200).json(doctors);
     } catch (error) {
@@ -58,4 +58,26 @@ const getAllDoctors = async (req, res, next) => {
     };
 }
 
-export { doctorRegister, doctorLogin, getAllDoctors };
+const getDoctorbyName = async (req, res, next) => {
+    try {
+        const doctor = await Doctors.findOne({ name: req.params.name }).select([
+            "name", "specialization", "experience", "avatarImage", "email"
+        ]);
+        return res.status(200).json(doctor);
+    } catch (error) {
+        next(error);
+    };
+}
+
+const UpdateDoctorbyId = async (req, res, next) => {
+    try {
+        const doctorId = req.params.id;
+        const body = req.body;
+        const doctor = await Doctors.findByIdAndUpdate(doctorId, body, { new: true });
+        return res.status(200).json(doctor);
+    } catch (error) {
+        next(error);
+    }
+};
+
+export { doctorRegister, doctorLogin, getAllDoctors, getDoctorbyName, UpdateDoctorbyId };
