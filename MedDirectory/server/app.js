@@ -1,5 +1,5 @@
 import express from 'express';
-import doctorRoutes from './model/doctorModel.js';
+import doctorRoutes from './routes/doctorRoute.js';
 const app = express();
 
 app.use(express.json());
