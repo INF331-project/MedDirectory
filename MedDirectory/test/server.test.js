@@ -43,14 +43,44 @@ describe('API test', () => {
     //     expect(response.status).toBe(201);
     // });
 
-    test('It should response with 200 status code from /doctorAPI/getDoctorbyName', async () => {
-        const name = "John Doe"
+    test('It should response with 200 status code from /doctorAPI/getDoctorbyName, partial name', async () => {
+        const name = "John"
         const response = await request(app)
             .get('/doctorAPI/getDoctorbyName/' + name)
             .send();
 
         // Verifica que la respuesta tenga un código de estado 200
         expect(response.status).toBe(200);
+    });
+
+    test('It should response with 200 status code from /doctorAPI/getDoctorbyName, Full name', async () => {
+        const name = "pepe masias"
+        const response = await request(app)
+            .get('/doctorAPI/getDoctorbyName/' + name)
+            .send();
+
+        // Verifica que la respuesta tenga un código de estado 200
+        expect(response.status).toBe(200);
+    });
+
+    test('It should response with a json from /doctorAPI/getDoctorbyName, Full name', async () => {
+        const name = "pepe masias"
+        const response = await request(app)
+            .get('/doctorAPI/getDoctorbyName/' + name)
+            .send();
+
+        // Verifica que la respuesta es un json
+        expect(response.type).toBe('application/json');
+    });
+
+    test('It should response with a json from /doctorAPI/getDoctorbyName, partial name', async () => {
+        const name = "John"
+        const response = await request(app)
+            .get('/doctorAPI/getDoctorbyName/' + name)
+            .send();
+
+        // Verifica que la respuesta es un json
+        expect(response.type).toBe('application/json');
     });
 
     test("It should response with 200 status code from /doctorAPI/getAllDoctors", async () => {
@@ -69,6 +99,13 @@ describe('API test', () => {
                 email: "jhon.doe2@a.com",
                 specialization: "Traumatologist",
             });
+        expect(response.status).toBe(200);
+    });
+
+    test("It should response with 200 status code from /doctorAPI/getDoctorbyId", async () => {
+        const response = await request(app)
+            .get("/doctorAPI/getDoctorbyId/651ceefa78da9f80b0651e5d")
+            .send();
         expect(response.status).toBe(200);
     });
 
