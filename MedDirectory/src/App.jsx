@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './components/Home';
 import EditMed from "./components/EditMed";
 import List from "./components/ListDoctors";
+import AddDoctor from "./components/AddDoctor";
 
 export default function App() {
 
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/editmed" element={<EditMed />} />
         <Route path="/list" element={<List />} />
+        <Route path="/addDoctor" element={<AddDoctor />} />
       </Routes>
       </BrowserRouter>
     </>
