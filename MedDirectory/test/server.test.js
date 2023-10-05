@@ -71,4 +71,86 @@ describe('API test', () => {
             });
         expect(response.status).toBe(200);
     });
+
+    test("Have a 400 status code from /doctorAPI/doctorRegister passing a name whit numbers", async () => {
+        const response = await request(app)
+            .post("/doctorAPI/doctorRegister")
+            .send({
+                name: "John Doe 2",
+                email: "a@a.com",
+                password: "12345678",
+                specialization: "Traumatologist",
+                experience: "5 years"
+            });
+        expect(response.body.status).toBe(400);
+    });
+
+    test("Have a 400 status code from /doctorAPI/doctorRegister with a password of 7 characters", async () => {
+        const response = await request(app)
+            .post("/doctorAPI/doctorRegister")
+            .send({
+                name: "John Does",
+                email: "b@a.com",
+                password: "1234567",
+                specialization: "Traumatologist",
+                experience: "5 years"
+            });
+        expect(response.body.status).toBe(400);
+    });
+
+    test("Have a 400 status code from /doctorAPI/doctorRegister with a password of 8 characters", async () => {
+        const response = await request(app)
+            .post("/doctorAPI/doctorRegister")
+            .send({
+                name: "John Doess",
+                email: "b1@a.com",
+                password: "1234568",
+                specialization: "Traumatologist",
+                experience: "5 years"
+            });
+        expect(response.body.status).toBe(400);
+    });
+
+    test("Have a 200 status code from /doctorAPI/doctorDeleteById", async () => {
+        const response = await request(app)
+            .delete("/doctorAPI/DeleteDoctorbyId/651cc9a054178f413124dc8c")
+            .send();
+        expect(response.status).toBe(200);
+    });
+
+    test("Have a 400 status code from /doctorAPI/doctorRegister with a invalid email, only a string", async () => {
+        const response = await request(app)
+            .post("/doctorAPI/doctorRegister")
+            .send({
+                name: "John Does",
+                email: "a",
+                password: "12345678",
+                specialization: "Traumatologist",
+                experience: "5 years"
+            });
+    });
+
+    test("Have a 400 status code from /doctorAPI/doctorRegister with a invalid email, string without .com", async () => {
+        const response = await request(app)
+            .post("/doctorAPI/doctorRegister")
+            .send({
+                name: "John Does",
+                email: "a@q",
+                password: "12345678",
+                specialization: "Traumatologist",
+                experience: "5 years"
+            });
+    });
+
+    test("Have a 400 status code from /doctorAPI/doctorRegister with a invalid email, string without @", async () => {
+        const response = await request(app)
+            .post("/doctorAPI/doctorRegister")
+            .send({
+                name: "John Does",
+                email: "a.com",
+                password: "12345678",
+                specialization: "Traumatologist",
+                experience: "5 years"
+            });
+    });
 })
