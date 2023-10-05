@@ -9,8 +9,6 @@ function DoctorList() {
   const [name, setName] = useState('');
   const [foundMed, setFoundMed] = useState(doctors);
 
-  const navigate = useNavigate();
-
   const filter = (e) => {
     const keyword = e.target.value;
 
@@ -23,6 +21,8 @@ function DoctorList() {
       setFoundMed(doctors);
     }
     setName(keyword);
+  };
+
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -78,6 +78,7 @@ function DoctorList() {
       )}
     </div>
   );
+  
 }
 
 export default DoctorList;
