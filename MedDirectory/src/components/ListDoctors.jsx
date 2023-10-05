@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getAllDoctorsRoute } from "../utils/APIRoutes";
+import { useNavigate } from "react-router-dom";
 
 function DoctorList() {
   const [doctors, setDoctors] = useState([]);
@@ -19,6 +20,11 @@ function DoctorList() {
     fetchData();
   }, []);
 
+    const navigate = useNavigate();
+    const sendID = (doctor) =>{
+      navigate('/editmed', {state : {doctor: doctor}})
+    }
+
   return (
     <div>
       <h2>List of Doctors</h2>
@@ -27,6 +33,7 @@ function DoctorList() {
           <li key={doctor._id}>
             {doctor.name}, {doctor.specialization}, {doctor.experience} of
             experience.
+            <button onClick={() => {sendID(doctor._id)}}>Editar</button>
           </li>
         ))}
       </ul>
