@@ -32,6 +32,7 @@ function DoctorList() {
     try {
       const response = await axios.get(getAllDoctorsRoute);
       setDoctors(response.data);
+      setFoundMed(response.data);
       console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -47,13 +48,15 @@ function DoctorList() {
   };
 
   const sendDocID = (doctor_id) => {
-    navigate("/doctorDetails", { state: {doctor: doctor_id} });
-  }
+    navigate("/doctorDetails", { state: { doctorId: doctor_id } });
+  };
 
   const handleDeleteDoctor = async (doctorId) => {
     try {
       await deleteDoctorById(doctorId);
-      fetchData();
+      setFoundMed((prevFoundMed) =>
+        prevFoundMed.filter((doctor) => doctor._id !== doctorId)
+      );
     } catch (error) {
       console.error("Error deleting doctor:", error);
     }
