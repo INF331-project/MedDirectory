@@ -110,6 +110,12 @@ const UpdateDoctorbyId = async (req, res, next) => {
     try {
         const doctorId = req.params.id;
         const body = req.body;
+        if(body.name && HaveNumbers(body.name)){
+            return res.json({ message: 'Name cannot contain numbers', status: 400 });
+        }
+        if(body.email && !esCorreoElectronicoValido(body.email)){
+            return res.json({ message: 'Invalid email', status: 400 });
+        }
         const doctor = await Doctors.findByIdAndUpdate(doctorId, body, { new: true });
         return res.status(200).json(doctor);
     } catch (error) {
