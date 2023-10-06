@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import FileBase64 from 'react-file-base64';
 
 function AddDoctor() {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ function AddDoctor() {
   });
 
   const [errors, setErrors] = useState({});
+  const [image, setImage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,7 +58,6 @@ function AddDoctor() {
 
     setErrors(errors);
 
-    // Return true if there are no validation errors
     return Object.keys(errors).length === 0;
   };
 
@@ -67,19 +68,18 @@ function AddDoctor() {
 
     if (validateForm()) {
       try {
+        console.log("Form data:", formData)
         const response = await axios.post(
           "http://localhost:5000/doctorAPI/doctorRegister",
-          formData
+          {
+            ...formData,
+            avatarImage: image,
+          }
         );
-
         console.log("Doctor registration successful:", response.data);
-        // Handle successful registration (e.g., show a success message)
-
-        // Redirect to listing page
         navigateTo('/list');
       } catch (error) {
         console.error("Error registering doctor:", error);
-        // Handle registration error (e.g., show an error message)
       }
     }
   };
@@ -111,6 +111,18 @@ function AddDoctor() {
       <Form.Group className="mb-3">
         <Form.Label>Experience</Form.Label>
         <Form.Control type="text" id="experience" name="experience" value={formData.experience} onChange={handleChange} placeholder="Experience" />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>Imagen de perfil</Form.Label>
+        <br />
+        <FileBase64
+          multiple={false}
+          onDone={(files) => {
+            const imageBase64 = files.base64;
+            setImage(imageBase64);
+          }}
+        />
       </Form.Group>
 
       <Button type="submit">Register doctor</Button>

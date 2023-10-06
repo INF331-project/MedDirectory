@@ -76,6 +76,12 @@ function DoctorList() {
         {foundMed && foundMed.length > 0 ? (
           foundMed.map((doctor) => (
             <ListGroup.Item as="li"key={doctor._id}>
+              <img
+                src={doctor.avatarImage}
+                alt={`${doctor.name}'s avatar`}
+                width="50"
+                height="50"
+              />
               {doctor.name}, {doctor.specialization}, {doctor.experience} of
               experience.
               <Button className='ListButton' onClick={() => sendEditID(doctor._id)}>Editar</Button>

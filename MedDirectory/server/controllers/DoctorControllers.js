@@ -19,7 +19,7 @@ function esCorreoElectronicoValido(correo) {
 // Register a new doctor and return a token
 const doctorRegister = async (req, res, next) => {
     try {
-        const { name, email, password, specialization, experience} = req.body;
+        const { name, email, password, specialization, experience, avatarImage} = req.body;
         const emailCheck = await Doctors.findOne({ email });
         if (emailCheck) {
             return res.json({ message: 'Email already exists', status: 400 });
@@ -39,7 +39,8 @@ const doctorRegister = async (req, res, next) => {
             email,
             password: hashedPassword,
             specialization,
-            experience
+            experience,
+            avatarImage
         });
         const token = jwt.sign({ id: doctor._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
         res.status(201).json({ token });
