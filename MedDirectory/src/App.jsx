@@ -7,7 +7,8 @@ import EditMed from "./components/EditMed";
 import List from "./components/ListDoctors";
 import NavBar from "./components/NavBar";
 import AddDoctor from "./components/AddDoctor";
-import deleteDoctorById from "./components/DeleteDoctor";
+import DeleteDoctorById from "./components/DeleteDoctor";
+import DoctorDetails from "./components/DoctorDetails";
 
 export default function App() {
 
@@ -20,7 +21,8 @@ export default function App() {
         <Route path="/editmed" element={<EditMed />} />
         <Route path="/list" element={<List />} />
         <Route path="/addDoctor" element={<AddDoctor />} />
-        <Route path="/DeleteDoctor" element={<deleteDoctorById />} />
+        <Route path="/deleteDoctor" element={<DeleteDoctorById />} />
+        <Route path="/doctorDetails" element={<DoctorDetails />} />
       </Routes>
       </BrowserRouter>
     </>

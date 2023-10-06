@@ -4,9 +4,8 @@ import cors from "cors";
 
 const app = express();
 
-// Configure CORS to allow requests from http://localhost:5173 (frontend)
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "http://127.0.0.1:5173",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 };
