@@ -32,7 +32,7 @@ const EditMed = ( doctor ) => {
         }
         const response = await axios.put(`${updateDoctor}/${location.state.doctor}`, editedMed);
         console.log("Datos del medico actualizados: ", response.data);
-        navigateTo('/list');
+        navigateTo("/doctorDetails", { state: { doctorId: response.data._id } });
       } catch (error) {
         console.error('Error al actualizar los datos del medico: ', error);
       }

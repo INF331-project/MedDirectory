@@ -31,7 +31,7 @@ function DoctorDetails() {
           <h2>Doctor Details</h2>
           <p>Name: {doctor.name}</p>
           <p>Specialization: {doctor.specialization}</p>
-          <p>Experience: {doctor.experience} years</p>
+          <p>Experience: {doctor.experience}</p>
           <p>Email: {doctor.email}</p>
           {doctor.avatarImage && (
             <img
