@@ -5,11 +5,16 @@ import {useLocation} from 'react-router-dom';
 import { updateDoctor } from '../utils/APIRoutes';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import FileBase64 from 'react-file-base64';
+import { useNavigate } from 'react-router-dom';
+
 
 const EditMed = ( doctor ) => {
     const location = useLocation();
+    const navigateTo = useNavigate();
 
     const [editedMed, setEditedMed] = useState({ ...doctor });
+    const [image, setImage] = useState('');
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -22,8 +27,12 @@ const EditMed = ( doctor ) => {
     //console.log({name, email, specialization, experience});
     const handleSave = async () => {
       try {
+        if(image.trim()) {
+          editedMed.avatarImage = image;
+        }
         const response = await axios.put(`${updateDoctor}/${location.state.doctor}`, editedMed);
         console.log("Datos del medico actualizados: ", response.data);
+        navigateTo('/list');
       } catch (error) {
         console.error('Error al actualizar los datos del medico: ', error);
       }
@@ -49,6 +58,17 @@ const EditMed = ( doctor ) => {
             <Form.Control name="email" value={editedMed.email} onChange={handleChange} type="email" placeholder="Ingresa el nuevo nombre" />
           </Form.Group>
         </Form>
+        <Form.Group className="mb-3">
+        <Form.Label>Imagen de perfil</Form.Label>
+        <br />
+        <FileBase64
+          multiple={false}
+          onDone={(files) => {
+            const imageBase64 = files.base64;
+            setImage(imageBase64);
+          }}
+        />
+      </Form.Group>
         <Button onClick={handleSave}>Guardar</Button> 
       </div>
     );
