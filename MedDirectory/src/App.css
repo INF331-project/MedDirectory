@@ -44,3 +44,14 @@
 .test {
   color:aliceblue;
 }
+
+.Logo {
+  background-image: url(./assets/Doctor-Background.jpg);
+}
+
+.ListButton {
+  display: flex;
+  justify-content: right;
+  align-self: right;
+  justify-self: right;
+}

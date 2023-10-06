@@ -3,9 +3,9 @@ import axios from "axios";
 import { getAllDoctorsRoute } from "../utils/APIRoutes";
 import { useNavigate } from "react-router-dom";
 import { deleteDoctorById } from "./DeleteDoctor";
-import Home from './Home';
 import Button  from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Form from 'react-bootstrap/Form';
 
 function DoctorList() {
   const [doctors, setDoctors] = useState([]);
@@ -46,6 +46,10 @@ function DoctorList() {
     navigate("/editmed", { state: { doctor: doctor_id } });
   };
 
+  const sendDocID = (doctor_id) => {
+    navigate("/doctorDetails", { state: {doctor: doctor_id} });
+  }
+
   const handleDeleteDoctor = async (doctorId) => {
     try {
       await deleteDoctorById(doctorId);
@@ -57,14 +61,13 @@ function DoctorList() {
 
   return (
     <div>
-      <Home />
       <h2>List of Doctors</h2>
-      <input 
+      <Form.Control 
         type="search"
         value={name}
         onChange={filter}
         className="input"
-        placeholder="nombre"
+        placeholder="Nombre del médico"
       />
       <ListGroup as="ul">
         {foundMed && foundMed.length > 0 ? (
@@ -72,8 +75,9 @@ function DoctorList() {
             <ListGroup.Item as="li"key={doctor._id}>
               {doctor.name}, {doctor.specialization}, {doctor.experience} of
               experience.
-              <Button onClick={() => sendEditID(doctor._id)}>Editar</Button>
-              <Button variant='primary' onClick={() => handleDeleteDoctor(doctor._id)}>Borrar</Button>
+              <Button className='ListButton' onClick={() => sendEditID(doctor._id)}>Editar</Button>
+              <Button className='ListButton' onClick={() => handleDeleteDoctor(doctor._id)}>Borrar</Button>
+              <Button className='ListButton' onClick={() => sendDocID(doctor._id)}>Ver detalles</Button>
             </ListGroup.Item>
           ))
         ) : (

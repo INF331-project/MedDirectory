@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import {useLocation} from 'react-router-dom';
 import { updateDoctor } from '../utils/APIRoutes';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const EditMed = ( doctor ) => {
     const location = useLocation();
@@ -29,35 +31,25 @@ const EditMed = ( doctor ) => {
 
     return (
       <div>
-        <input
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          value={editedMed.name}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="specialization"
-          placeholder="Especializacion"
-          value={editedMed.specialization}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="experience"
-          placeholder="Experiencia"
-          value={editedMed.experience}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="email"
-          placeholder="Email"
-          value={editedMed.email}
-          onChange={handleChange}
-        />
-        <button onClick={handleSave}>Guardar</button>
+        <Form>
+          <Form.Group className="mb-3">
+            <Form.Label>Nombre</Form.Label>
+            <Form.Control name="name" value={editedMed.name} onChange={handleChange} type="text" placeholder="Ingresa el nuevo nombre" />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Especialización</Form.Label>
+            <Form.Control name="specialization" value={editedMed.specialization} onChange={handleChange} type="text" placeholder="Ingresa la especialización" />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Experiencia</Form.Label>
+            <Form.Control name="experience" value={editedMed.experience} onChange={handleChange} type="text" placeholder="Ingresa experiencia" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control name="email" value={editedMed.email} onChange={handleChange} type="email" placeholder="Ingresa el nuevo nombre" />
+          </Form.Group>
+        </Form>
+        <Button onClick={handleSave}>Guardar</Button> 
       </div>
     );
   };

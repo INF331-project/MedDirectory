@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 function AddDoctor() {
   const [formData, setFormData] = useState({
@@ -83,61 +85,36 @@ function AddDoctor() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3">
+        <Form.Label>Name</Form.Label>
+        <Form.Control type="text" id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Name" />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>Email</Form.Label>
+        <Form.Control type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" />
         {errors.email && <span className="error">{errors.email}</span>}
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" id="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" />
         {errors.password && <span className="error">{errors.password}</span>}
-      </div>
-      <div>
-        <label htmlFor="specialization">Specialization:</label>
-        <input
-          type="text"
-          id="specialization"
-          name="specialization"
-          value={formData.specialization}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="experience">Experience:</label>
-        <input
-          type="text"
-          id="experience"
-          name="experience"
-          value={formData.experience}
-          onChange={handleChange}
-        />
-      </div>
-      <button type="submit">Register Doctor</button>
-    </form>
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>Specialization</Form.Label>
+        <Form.Control type="text" id="specialization" name="specialization" value={formData.specialization} onChange={handleChange} placeholder="Specialization" />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>Experience</Form.Label>
+        <Form.Control type="text" id="experience" name="experience" value={formData.experience} onChange={handleChange} placeholder="Experience" />
+      </Form.Group>
+
+      <Button type="submit">Register doctor</Button>
+    </Form>
   );
 }
 

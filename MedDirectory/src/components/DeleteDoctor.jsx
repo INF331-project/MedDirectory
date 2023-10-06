@@ -10,3 +10,5 @@ export const deleteDoctorById = async (doctorId) => {
     throw error;
   }
 };
+
+export default deleteDoctorById;
