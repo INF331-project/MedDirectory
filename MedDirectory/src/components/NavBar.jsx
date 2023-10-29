@@ -3,8 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import home from '../assets/home.svg';
 
-
-function NavBar() {
+export const NavBar = () => {
     return (
         <>
             <Navbar bg='light' data-bs-theme='light'>

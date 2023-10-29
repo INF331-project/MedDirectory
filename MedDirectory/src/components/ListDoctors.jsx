@@ -3,11 +3,12 @@ import axios from "axios";
 import { getAllDoctorsRoute } from "../utils/APIRoutes";
 import { useNavigate } from "react-router-dom";
 import { deleteDoctorById } from "./DeleteDoctor";
-import Button  from 'react-bootstrap/Button';
+import Home from './Home';
+import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
 
-function DoctorList() {
+export const DoctorList = () => {
   const [doctors, setDoctors] = useState([]);
   const [name, setName] = useState('');
   const [foundMed, setFoundMed] = useState(doctors);
