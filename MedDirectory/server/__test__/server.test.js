@@ -1,4 +1,4 @@
-import app from '../server/app.js';
+import app from '../app';
 import request from 'supertest';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';

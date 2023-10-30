@@ -1,10 +1,8 @@
-import Carousel from "react-bootstrap/Carousel";
-import Carrusel1 from "../assets/doctors1.jpg";
-import Carrusel2 from "../assets/doctors2.jpg";
-import Carrusel3 from "../assets/doctors3.jpg";
+import React from "react";
+import home from '../assets/home.svg';
+import { useNavigate } from "react-router-dom";
 
-
-function Home () {
+export const Home = () => {
     return (
         <div>
             <Carousel>
