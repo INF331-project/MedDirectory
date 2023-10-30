@@ -16,7 +16,7 @@ export default function App() {
     <>
       <BrowserRouter>
       <NavBar />
-      <h1>Directorio Médico</h1>
+      <h1>Directorio Médic</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/editmed" element={<EditMed />} />
