@@ -3,27 +3,37 @@ import axios from "axios";
 import { getAllDoctorsRoute } from "../utils/APIRoutes";
 import { useNavigate } from "react-router-dom";
 import { deleteDoctorById } from "./DeleteDoctor";
-import Button  from 'react-bootstrap/Button';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/Button";
+import ListGroup from "react-bootstrap/ListGroup";
+import Form from "react-bootstrap/Form";
 
 function DoctorList() {
   const [doctors, setDoctors] = useState([]);
-  const [name, setName] = useState('');
-  const [foundMed, setFoundMed] = useState(doctors);
+  const [name, setName] = useState("");
+  const [specialization, setSpecialization] = useState("");
+  const [foundMed, setFoundMed] = useState([]);
 
-  const filter = (e) => {
-    const keyword = e.target.value;
+  useEffect(() => {
+    filterDoctors();
+  }, [name, specialization]);
 
-    if (keyword !== '') {
-      const results =  doctors.filter((doctor) => {
-        return doctor.name.toLowerCase().startsWith(keyword.toLowerCase());
-      });
-      setFoundMed(results);
-    } else {
-      setFoundMed(doctors);
+  const filterDoctors = () => {
+    const results = doctors.filter((doctor) => {
+      const nameMatch = doctor.name.toLowerCase().includes(name.toLowerCase());
+      const specializationMatch = doctor.specialization
+        .toLowerCase()
+        .includes(specialization.toLowerCase());
+      return nameMatch && specializationMatch;
+    });
+    setFoundMed(results);
+  };
+
+  const handleFilterChange = (e) => {
+    if (e.target.name === "name") {
+      setName(e.target.value);
+    } else if (e.target.name === "specialization") {
+      setSpecialization(e.target.value);
     }
-    setName(keyword);
   };
 
   const navigate = useNavigate();
@@ -65,17 +75,34 @@ function DoctorList() {
   return (
     <div>
       <h2>List of Doctors</h2>
-      <Form.Control 
+      <Form.Control
         type="search"
+        name="name"
         value={name}
-        onChange={filter}
+        onChange={handleFilterChange}
         className="input"
         placeholder="Nombre del médico"
       />
+
+      <Form.Control
+        as="select"
+        name="specialization"
+        value={specialization}
+        onChange={handleFilterChange}
+        className="input"
+        placeholder="Especialización">
+        <option value="">All Specializations</option>
+        {doctors.map((doctor) => (
+          <option key={doctor._id} value={doctor.specialization}>
+            {doctor.specialization}
+          </option>
+        ))}
+      </Form.Control>
+
       <ListGroup as="ul">
         {foundMed && foundMed.length > 0 ? (
           foundMed.map((doctor) => (
-            <ListGroup.Item as="li"key={doctor._id}>
+            <ListGroup.Item as="li" key={doctor._id}>
               <img
                 src={doctor.avatarImage}
                 alt={`${doctor.name}'s avatar`}
@@ -84,9 +111,21 @@ function DoctorList() {
               />
               {doctor.name}, {doctor.specialization}, {doctor.experience} of
               experience.
-              <Button className='ListButton' onClick={() => sendEditID(doctor._id)}>Editar</Button>
-              <Button className='ListButton' onClick={() => handleDeleteDoctor(doctor._id)}>Borrar</Button>
-              <Button className='ListButton' onClick={() => sendDocID(doctor._id)}>Ver detalles</Button>
+              <Button
+                className="ListButton"
+                onClick={() => sendEditID(doctor._id)}>
+                Editar
+              </Button>
+              <Button
+                className="ListButton"
+                onClick={() => handleDeleteDoctor(doctor._id)}>
+                Borrar
+              </Button>
+              <Button
+                className="ListButton"
+                onClick={() => sendDocID(doctor._id)}>
+                Ver detalles
+              </Button>
             </ListGroup.Item>
           ))
         ) : (
@@ -97,7 +136,6 @@ function DoctorList() {
       </ListGroup>
     </div>
   );
-  
 }
 
 export default DoctorList;
