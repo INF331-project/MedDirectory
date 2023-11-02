@@ -9,14 +9,13 @@ import NavBar from "./components/NavBar";
 import AddDoctor from "./components/AddDoctor";
 import DeleteDoctorById from "./components/DeleteDoctor";
 import DoctorDetails from "./components/DoctorDetails";
+import LocationSelect from "./components/LocationSelect";
 
-export default function App() {
-
+export const App = () => {
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
       <NavBar />
-      <h1>Directorio Médic</h1>
+      <h1>Directorio Médico</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/editmed" element={<EditMed />} />
@@ -24,8 +23,10 @@ export default function App() {
         <Route path="/addDoctor" element={<AddDoctor />} />
         <Route path="/deleteDoctor" element={<DeleteDoctorById />} />
         <Route path="/doctorDetails" element={<DoctorDetails />} />
+        <Route path="/locationSelect" element={<LocationSelect />} />
       </Routes>
-      </BrowserRouter>
-    </>
+    </BrowserRouter>
   );
 }
+
+export default App;
