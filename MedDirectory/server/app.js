@@ -1,5 +1,6 @@
 import express from "express";
 import doctorRoutes from "./routes/doctorRoute.js";
+import mapRoutes from "./routes/mapRouter.js";
 import cors from "cors";
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/doctorAPI", doctorRoutes);
+app.use("/mapAPI", mapRoutes);
 app.get("/ping", (req, res) => res.send("pong"));
 app.post("/test", (req, res) => {
   console.log(req.body);

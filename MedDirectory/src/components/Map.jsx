@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useRef } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import {
     GoogleMap,
     Marker,
@@ -9,11 +9,24 @@ import {
 import "../styles/map.css";
 // import Distance from "./Distance";
 import Lugares from "./Lugares"
+import Clinics from "./Clinics";
 
 export const Map = () => {
+    const [lat, setLat] = useState(null);
+    const [lng, setLng] = useState(null);
     const [office, setOffice] = useState();
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            setLat(position.coords.latitude);
+            setLng(position.coords.longitude);
+            setOffice({ lat: position.coords.latitude, lng: position.coords.longitude });
+            // console.log("Latitude is :", position.coords.latitude);
+        }), (error) => {
+            console.log("Error obteniendo la locación del usuario: ", error);
+        }
+    }, []);
     const mapRef = useRef(null);
-    const center = useMemo(() => ({ lat: -33.490823, lng: -70.618785 }), []);
+    // const center = useMemo(() => ({ lat: lat, lng: lng }), []);
     const options = useMemo(() => ({
         disableDefaultUI: true,
         clickableIcons: false,
@@ -23,15 +36,16 @@ export const Map = () => {
     return <div className="container">
         <div className="controls">
             <h2>Seleccionar Clinica</h2>
+            {/* <Clinics /> */}
             <Lugares setOffice={(position) => {
                 setOffice(position);
-                mapRef.current?.panTo(position);
-            }}/>
+                mapRef.current.panTo(position);
+            }} />
         </div>
         <div className="map">
             <GoogleMap 
-            zoom={13} 
-            center={center} 
+            zoom={15} 
+            center={{ lat: lat, lng: lng }} 
             mapContainerClassName="map-container" 
             options={options}
             onLoad={onLoad}
