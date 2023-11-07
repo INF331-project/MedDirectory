@@ -10,9 +10,6 @@ on:
       - develop
   workflow_dispatch:
 
-environment:
-  db: {{ secrets.MONGO_URL }}
-  
 # There are two jobs in this workflow - build and deploy
 jobs:
  # Builds the application for production. 
@@ -40,6 +37,9 @@ jobs:
         with:
           name: node-app
           path: dist # This should be your distribution path, not the root path
+        
+        env:
+          MONGO_URL: {{ secrets.MONGO_URL }}
  
  # Deploy the application to Azure
   deploy:
