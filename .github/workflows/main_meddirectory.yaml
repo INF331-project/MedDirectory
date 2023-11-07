@@ -10,6 +10,9 @@ on:
       - develop
   workflow_dispatch:
 
+environment:
+  db: {{ secrets.MONGO_URL }}
+  
 # There are two jobs in this workflow - build and deploy
 jobs:
  # Builds the application for production. 
