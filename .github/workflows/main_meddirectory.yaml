@@ -40,6 +40,7 @@ jobs:
         
         env:
           MONGO_URL: ${{ secrets.MONGO_URL }}
+          PORT: ${{ secrets.PORT }}
  
  # Deploy the application to Azure
   deploy:
