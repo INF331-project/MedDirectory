@@ -10,6 +10,9 @@ on:
       - develop
   workflow_dispatch:
 
+env:
+  VITE_ENV_VAR1: ${{ env.MONGO_URL }}
+
 # There are two jobs in this workflow - build and deploy
 jobs:
  # Builds the application for production. 
