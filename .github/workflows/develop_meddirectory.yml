@@ -31,14 +31,11 @@ jobs:
           MONGO_URI: ${{ secrets.MONGO_URL }}
           PORT: ${{ secrets.PORT }}
 
-      - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: release.zip
+          path: dist
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,9 +49,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: node-app
-
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
