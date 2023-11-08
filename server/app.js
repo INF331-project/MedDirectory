@@ -1,6 +1,7 @@
 import express from "express";
 import doctorRoutes from "./routes/doctorRoute.js";
 import cors from "cors";
+import * as path from 'path';
 
 const app = express();
 
@@ -20,5 +21,11 @@ app.post("/test", (req, res) => {
   console.log(req.body);
   res.json({ OK: "OK" });
 });
+
+// Production
+app.use(express.static("../dist"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "dist", "index.html"));
+})
 
 export default app;
