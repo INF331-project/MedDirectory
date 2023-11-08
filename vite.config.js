@@ -11,12 +11,15 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
-
+  
   build: {
+    chunkSizeWarningLimit: 100,
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'src/index.html')
-      },
-    },
+    onwarn(warning, warn) {
+      if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
+        return
+      }
+      warn(warning)
+    }}
   },
 });
