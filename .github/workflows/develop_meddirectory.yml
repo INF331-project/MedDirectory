@@ -35,6 +35,10 @@ jobs:
         with:
           name: node-app
           path: release.zip
+        
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URL }}
+          PORT: ${{ secrets.PORT }}
 
   deploy:
     runs-on: ubuntu-latest
