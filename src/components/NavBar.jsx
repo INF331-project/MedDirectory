@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useLoadScript } from '@react-google-maps/api';
-import { Dropdown } from "react-bootstrap";
-import usePlacesAutocomplete from "use-places-autocomplete";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
