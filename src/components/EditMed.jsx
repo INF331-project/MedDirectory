@@ -29,7 +29,7 @@ export const EditMed = (doctor) => {
       if (image.trim()) {
         editedMed.avatarImage = image;
       }
-      const response = await axios.put(`${updateDoctor}/${location.state.doctor}`, editedMed);
+      const response = await axios.put(import.meta.env.VITE_API_URL + '/UpdateDoctorbyId/' + location.state.doctor, editedMed);
       console.log("Datos del medico actualizados: ", response.data);
       navigateTo("/doctorDetails", { state: { doctorId: response.data._id } });
     } catch (error) {
