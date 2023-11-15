@@ -62,9 +62,10 @@ export const AddDoctor = () => {
         return Object.keys(errors).length === 0;
     };
 
+    const navigateTo = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const navigateTo = useNavigate();
 
         if (validateForm()) {
             try {
