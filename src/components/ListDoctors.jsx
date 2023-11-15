@@ -41,7 +41,7 @@ export const DoctorList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(getAllDoctorsRoute);
+      const response = await axios.get(import.meta.env.VITE_API_URL + "/getAllDoctors");
       setDoctors(response.data);
       setFoundMed(response.data);
       console.log(response.data);
