@@ -69,7 +69,7 @@ export const AddDoctor = () => {
             try {
                 console.log("Form data:", formData)
                 const response = await axios.post(
-                    "http://localhost:5000/doctorAPI/doctorRegister",
+                    "https://api-med.azurewebsites.net/doctorAPI/doctorRegister",
                     {
                         ...formData,
                         avatarImage: image,

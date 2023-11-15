@@ -31,6 +31,7 @@ jobs:
           MONGO_URI: ${{ secrets.MONGO_URL }}
           PORT: ${{ secrets.PORT }}
           VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3

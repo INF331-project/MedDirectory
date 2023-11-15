@@ -1,9 +1,10 @@
 import axios from "axios";
+import { host } from '../utils/APIRoutes';
 
 export const deleteDoctorById = async (doctorId) => {
   try {
     const response = await axios.delete(
-      `http://localhost:5000/doctorAPI/DeleteDoctorbyId/${doctorId}`
+      `${host}/DeleteDoctorbyId/${doctorId}`
     );
     return response.data;
   } catch (error) {
