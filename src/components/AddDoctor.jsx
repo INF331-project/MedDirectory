@@ -70,7 +70,7 @@ export const AddDoctor = () => {
             try {
                 console.log("Form data:", formData)
                 const response = await axios.post(
-                    `${host}/doctorRegister`,
+                    import.meta.env.VITE_API_URL + '/doctorRegister',
                     {
                         ...formData,
                         avatarImage: image,

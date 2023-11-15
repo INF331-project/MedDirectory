@@ -4,7 +4,7 @@ import { host } from '../utils/APIRoutes';
 export const deleteDoctorById = async (doctorId) => {
   try {
     const response = await axios.delete(
-      `${host}/DeleteDoctorbyId/${doctorId}`
+      import.meta.env.VITE_API_URL + '/DeleteDoctorbyId/${doctorId}'
     );
     return response.data;
   } catch (error) {
