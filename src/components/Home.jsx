@@ -4,6 +4,7 @@ import Carrusel2 from "../assets/doctors2.jpg";
 import Carrusel3 from "../assets/doctors3.jpg";
 
 export const Home = () => {
+    console.log(import.meta.env.VITE_API_URL)
     return (
         <div>
             <Carousel>
