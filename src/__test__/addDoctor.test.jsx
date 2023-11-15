@@ -1,7 +1,7 @@
 // src/__tests__/App.test.tsx
-import { screen, render, waitFor } from '@testing-library/react';
-import user from '@testing-library/user-event';
-import { AddDoctor } from '../components/AddDoctor';
+// import { screen, render, waitFor } from '@testing-library/react';
+// import user from '@testing-library/user-event';
+// import { AddDoctor } from '../components/AddDoctor';
 
 describe("App", () => {
     test("prueba para envio de formulario", () => {
