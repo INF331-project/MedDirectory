@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FileBase64 from 'react-file-base64';
+import { host } from '../utils/APIRoutes';
 
 export const AddDoctor = () => {
     const [formData, setFormData] = useState({
@@ -69,7 +70,7 @@ export const AddDoctor = () => {
             try {
                 console.log("Form data:", formData)
                 const response = await axios.post(
-                    "https://api-med.azurewebsites.net/doctorAPI/doctorRegister",
+                    `${host}/doctorRegister`,
                     {
                         ...formData,
                         avatarImage: image,
