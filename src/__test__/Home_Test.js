@@ -1,4 +1,4 @@
-import 'chromedriver';
+import 'chromedriver/lib/chromedriver';
 import { equal } from 'assert';
 import { Builder, Key, By, until } from 'selenium-webdriver';
 
