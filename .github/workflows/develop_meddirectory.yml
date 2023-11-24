@@ -26,6 +26,15 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
+
+      - name: "Install Google Chrome"
+        run: |
+          chmod +x ./scripts/InstallChrome.sh
+          ./scripts/InstallChrome.sh 
+      
+      - name: "run selenium tests"
+        run: |
+          npm run test_selen
           
         env:
           MONGO_URI: ${{ secrets.MONGO_URL }}
