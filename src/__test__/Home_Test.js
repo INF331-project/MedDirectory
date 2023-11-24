@@ -1,4 +1,4 @@
-import 'chromedriver/lib/chromedriver';
+import 'chromedriver';
 import { equal } from 'assert';
 import { Builder, Key, By, until } from 'selenium-webdriver';
 
@@ -6,7 +6,11 @@ describe('Checkout Google.com', function () {
     let driver;
 
     before(async function() {
+
+        headless = process.env.HEADLESS? ['headless'] : []
+
         driver = await new Builder().forBrowser('chrome').build();
+
     });
 
     it('Search on Google', async function() {
