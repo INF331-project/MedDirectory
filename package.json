@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test": "jest",
     "dev_back": "nodemon server/server.js",
-    "test_selen": "mocha --recursive src/__test__/Home_Test.js"
+    "test_selen": "mocha --recursive --timeout 10000 src/__test__/Home_Test.js"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
