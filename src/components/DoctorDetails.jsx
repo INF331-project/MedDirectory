@@ -30,9 +30,9 @@ export const DoctorDetails = () => {
                 <div>
                     <h2>Doctor Details</h2>
                     <p id='nombre'>Name: {doctor.name}</p>
-                    <p>Specialization: {doctor.specialization}</p>
-                    <p>Experience: {doctor.experience}</p>
-                    <p>Email: {doctor.email}</p>
+                    <p id='especializacion'>Specialization: {doctor.specialization}</p>
+                    <p id='experiencia'>Experience: {doctor.experience}</p>
+                    <p id="email">Email: {doctor.email}</p>
                     {doctor.avatarImage && (
                         <img
                             src={doctor.avatarImage}
