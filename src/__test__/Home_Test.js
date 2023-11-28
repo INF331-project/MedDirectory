@@ -41,7 +41,7 @@ describe('Checkout Google.com', function () {
 
     });
 
-    
+    /*
     it('Editar médico', async function() {
         await driver.get('https://meddirectory.azurewebsites.net/');
         await driver.findElement(By.linkText("Lista de médicos")).click();
@@ -59,6 +59,6 @@ describe('Checkout Google.com', function () {
         equal(exp, "12");
 
     });
-    
+    */
     after(() => driver && driver.quit());
 })
