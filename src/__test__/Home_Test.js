@@ -41,16 +41,16 @@ describe('Checkout Google.com', function () {
 
     });
 
-    
+    /*
     it('Editar médico', async function() {
         await driver.get('https://meddirectory.azurewebsites.net/');
         await driver.findElement(By.linkText("Lista de médicos")).click();
 
-        await driver.findElement(By.xpath(`/html/body/div/div/select`)).click();
-        await driver.wait(until.elementLocated(By.xpath(`/html/body/div/div/select`)), 100000);
-        await driver.findElement(By.xpath(`/html/body/div/div/select/option[4]`)).click();
+        await driver.findElement(By.className("input form-control")).sendKeys("john doe");
+        await driver.wait(until.elementLocated(By.xpath(`/html/body/div/div/ul/li/button[1]`)), 100000);
         await driver.findElement(By.xpath(`/html/body/div/div/ul/li/button[1]`)).click();
 
+        await driver.wait(until.elementLocated(By.xpath(`/html/body/div/div/form/div[3]/input`)), 100000);
         await driver.findElement(By.xpath(`/html/body/div/div/form/div[3]/input`)).sendKeys("12");
 
         await driver.findElement(By.className("btn btn-primary")).click();
@@ -58,6 +58,6 @@ describe('Checkout Google.com', function () {
         await driver.wait(until.elementLocated(By.className(`/html/body/div/div/div/p[3]`)), 10000);
 
     });
-    
+    */
     after(() => driver && driver.quit());
 })
