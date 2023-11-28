@@ -42,7 +42,7 @@ describe('Checkout Google.com', function () {
         equal(name, "Nombre del médico");
     });
 
-    /*
+    
     it('Editar médico', async function() {
         await driver.get('https://meddirectory.azurewebsites.net/');
         await driver.findElement(By.linkText("Lista de médicos")).click();
@@ -56,11 +56,11 @@ describe('Checkout Google.com', function () {
 
         await driver.findElement(By.className("btn btn-primary")).click();
 
-        await driver.wait(until.elementLocated(By.calssName("doctor-details")), 100000);
-        const exp = await driver.findElement(By.className("doctor-details"));
+        await driver.wait(until.elementLocated(By.className("doctor-details")), 100000);
+        const exp = await driver.findElement(By.className("doctor-details")).getAttribute("innerHTML");
         equal(exp, "Doctor Details");
 
     });
-    */
+    
     after(() => driver && driver.quit());
 })
