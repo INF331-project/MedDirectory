@@ -13,7 +13,7 @@ describe('Checkout Google.com', function () {
 
     before(async function() {
 
-        driver = await new Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().headless().windowSize(screen)).build();
+        driver = await new Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().windowSize(screen)).build();
 
     });
 
@@ -38,6 +38,23 @@ describe('Checkout Google.com', function () {
         await driver.findElement(By.className("btn btn-primary")).click();
 
         await driver.wait(until.elementLocated(By.className("input form-control")), 10000);
+
+    });
+
+    it('Editar médico', async function() {
+        await driver.get('https://meddirectory.azurewebsites.net/');
+        await driver.findElement(By.linkText("Lista de médicos")).click();
+
+        await driver.findElement(By.xpath(`/html/body/div/div/select`)).click();
+        await driver.wait(until.elementLocated(By.xpath(`/html/body/div/div/select`)), 100000);
+        await driver.findElement(By.xpath(`/html/body/div/div/select/option[4]`)).click();
+        await driver.findElement(By.xpath(`/html/body/div/div/ul/li/button[1]`)).click();
+
+        await driver.findElement(By.xpath(`/html/body/div/div/form/div[3]/input`)).sendKeys("12");
+
+        await driver.findElement(By.className("btn btn-primary")).click();
+
+        await driver.wait(until.elementLocated(By.className(`/html/body/div/div/div/p[3]`)), 10000);
 
     });
     
