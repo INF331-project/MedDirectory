@@ -17,7 +17,7 @@ describe('Checkout Google.com', function () {
 
     });
 
-    it('Search on Google', async function() {
+    it('Prueba de Suite', async function() {
         await driver.get('https://meddirectory.azurewebsites.net/');
         await driver.findElement(By.linkText("Lista de médicos")).click();
 
@@ -38,7 +38,8 @@ describe('Checkout Google.com', function () {
         await driver.findElement(By.className("btn btn-primary")).click();
 
         await driver.wait(until.elementLocated(By.className("input form-control")), 10000);
-
+        const name = await driver.findElement(By.className("input form-control")).getAttribute("placeholder");
+        equal(name, "Nombre del médico");
     });
 
     /*
@@ -55,8 +56,9 @@ describe('Checkout Google.com', function () {
 
         await driver.findElement(By.className("btn btn-primary")).click();
 
-        const exp = await driver.findElement(By.id("experiencia"));
-        equal(exp, "12");
+        await driver.wait(until.elementLocated(By.calssName("doctor-details")), 100000);
+        const exp = await driver.findElement(By.className("doctor-details"));
+        equal(exp, "Doctor Details");
 
     });
     */

@@ -28,7 +28,7 @@ export const DoctorDetails = () => {
         <div>
             {doctor ? (
                 <div>
-                    <h2>Doctor Details</h2>
+                    <h2 className="doctor-details">Doctor Details</h2>
                     <p id='nombre'>Name: {doctor.name}</p>
                     <p id='especializacion'>Specialization: {doctor.specialization}</p>
                     <p id='experiencia'>Experience: {doctor.experience}</p>
